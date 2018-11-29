@@ -34,6 +34,6 @@ let CheckKey = function(req,res,next){
 	else{
 		next();
 	}
-}
+};
 
 module.exports = {CheckChars,CheckKey};

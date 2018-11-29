@@ -1,15 +1,13 @@
 const express = require("express");
-const bodyParser = require('body-parser');
 const passport = require('passport');
 const {User} = require('../models/user');
 const {CheckChars,CheckKey} = require('../tools/checkChars');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
-const jsonParser = bodyParser.json();
-//router.use(jsonParser);
+
+//used to create a user
 router.post('/',CheckChars, CheckKey,(req,res) => {
 	
-
 	const requestFields = Object.keys(req.body).length;
 	if (requestFields > 3){
 		return res.status(422).json({

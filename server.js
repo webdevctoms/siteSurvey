@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const {router: userRouter} = require('./users/router');
 const {localStrategy, jwtStrategy} = require('./auth/strategies');
 const {router: authRouter} = require('./auth/router');
+const {router: surveyRouter} = require('./surveys/router');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 mongoose.Promise = global.Promise;
@@ -18,7 +19,17 @@ app.use(express.static('public'));
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 app.use("/api/users",userRouter);
-app.use('/api/auth/', authRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/survey', surveyRouter);
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+app.get('/protected', jwtAuth, (req, res) => {
+  res.json({
+    login: "success"
+  });
+  
+});
 
 let server;
 
