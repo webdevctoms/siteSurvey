@@ -4,11 +4,21 @@ const {PORT,DATABASE_URL} = require('./config');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const morgan = require('morgan');
+const {router: userRouter} = require('./users/router');
+const {localStrategy, jwtStrategy} = require('./auth/strategies');
+const {router: authRouter} = require('./auth/router');
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
 mongoose.Promise = global.Promise;
 
 const app = express();
 app.use(morgan('common'));
+app.use(jsonParser);
 app.use(express.static('public'));
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+app.use("/api/users",userRouter);
+app.use('/api/auth/', authRouter);
 
 let server;
 
