@@ -16,6 +16,7 @@ const app = express();
 app.use(morgan('common'));
 app.use(jsonParser);
 app.use(express.static('public'));
+app.enable("trust proxy");
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 app.use("/api/users",userRouter);
