@@ -16,9 +16,33 @@ const apiLimiter = rateLimit({
 router.use(apiLimiter);
 
 router.post('/',CheckChars,CheckSurvey, (req,res) => {
-	return res.status(201).json({
-		message:"Success"
+
+	const {questions,answers,email} = req.body;
+
+	return SurveyData.create({
+		questions,
+		answers,
+		email
+	})
+	.then(data => {
+		return res.status(201).json(data.serialize());
+	})
+	.catch(err => {
+		if(err.reason === 'ValidationError'){
+			return res.status(err.code).json(err);
+		}
+		if(err.code === 11000){
+
+			return res.status(422).json({
+				code:422,
+				reason:"ValidationError",
+				message:"email taken"
+			});
+
+		}
+		res.status(500).json({code:500, message:'internal server error'});
 	});
+	
 });
 
 module.exports = {router};

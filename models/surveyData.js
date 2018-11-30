@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const surveySchema = mongoose.Schema({
-	uid: {type:Number},
 	questions: {type:Array, required:true},
 	answers: {type:Array, required:true},
 	email: {type:String, required:true,unique:true}
