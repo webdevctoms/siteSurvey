@@ -4,6 +4,16 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 const router = express.Router();
 
+const rateLimit = require("express-rate-limit");
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 3,
+  message:"To many attempts"
+});
+
+router.use(apiLimiter);
+
 const createAuthToken = function(user){
 	return jwt.sign({user}, config.JWT_SECRET,{
 		subject: user.username,
