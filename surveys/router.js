@@ -16,7 +16,7 @@ const apiLimiter = rateLimit({
 router.use(apiLimiter);
 
 router.post('/',CheckChars,CheckSurvey, (req,res) => {
-
+	//console.log("test");
 	const {questions,answers,email} = req.body;
 
 	return SurveyData.create({

@@ -2,7 +2,7 @@ const validator = require("email-validator");
 
 let CheckSurvey = function(req,res,next){
 	const requestFields = Object.keys(req.body).length;
-	console.log(requestFields,req.body);
+	console.log("first console log ",requestFields,req.body);
 	const requiredFields = ["questions","answers","email"];
 	const checkMissingField = requiredFields.find(field => !(field in req.body));
 	const checkStringField = requiredFields.find(field => {
@@ -70,7 +70,7 @@ let CheckSurvey = function(req,res,next){
 			message:"Extra Field"
 		});
 	}
-
+	console.log("finished check survey");
 	next();
 };
 
