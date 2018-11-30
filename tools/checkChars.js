@@ -1,7 +1,7 @@
 const {KEY} = require('../config');
 
 let CheckChars = function(req,res,next){
-	const legalChars = /^[a-zA-z0-9\{\}\<\>\[\]\-\+\*.,?!;\s']*$/;
+	const legalChars = /^[a-zA-z0-9\{\}\<\>\[\]\-\+\*\/.,?!;\s']*$/;
 	let check;
 	const checkCharacters = Object.keys(req.body).find(key =>{
 		if(key === "email"){
