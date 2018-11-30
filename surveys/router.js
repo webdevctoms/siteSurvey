@@ -8,7 +8,7 @@ const rateLimit = require("express-rate-limit");
 const router = express.Router();
 
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 60 * 60 * 1000, // 15 minutes
   max: 5,
   message:"To many attempts"
 });
