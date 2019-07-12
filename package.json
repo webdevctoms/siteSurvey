@@ -25,6 +25,7 @@
     "node": "^11.2.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "lodash": ">=4.17.13"
   }
 }
