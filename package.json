@@ -18,7 +18,7 @@
     "email-validator": "^2.0.4",
     "express": "^4.16.4",
     "express-rate-limit": "^3.3.2",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^9.0.0",
     "mocha": "^5.2.0",
     "mongoose": "^5.3.14",
     "morgan": "^1.9.1",
